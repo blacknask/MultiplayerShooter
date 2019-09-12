@@ -21,20 +21,21 @@ public class PlayerController : NetworkBehaviour
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, y);
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Fire();
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                CmdFire();
+            }
 
     }
-    void Fire()
+    [Command]
+    void CmdFire()
     {
         GameObject tiro = (GameObject)Instantiate(projetil, projetilspawn.position, projetilspawn.rotation);
-        tiro.GetComponent<Rigidbody>().velocity = tiro.transform.forward * 6.0f;
+        tiro.GetComponent<Rigidbody>().velocity = tiro.transform.forward * 10.0f;
+
+        NetworkServer.Spawn(tiro);
+
         Destroy(tiro, 2.0f);
     }
-    public override void OnStartLocalPlayer()
-    {
-        GetComponent<MeshRenderer>().material.color = Color.blue;
-    }
+    
 }
