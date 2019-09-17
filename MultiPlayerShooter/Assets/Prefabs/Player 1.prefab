@@ -1230,6 +1230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaAtual: 0
   barravida: {fileID: 8710241651395936340}
+  Respawn: 1
 --- !u!114 &5444579084409835491
 MonoBehaviour:
   m_ObjectHideFlags: 0

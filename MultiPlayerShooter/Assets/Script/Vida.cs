@@ -8,6 +8,7 @@ public class Vida : NetworkBehaviour
     [SerializeField] const int vidaMaxima = 100;
     [SyncVar(hook = "AtualizaBarraVida")] [SerializeField] int vidaAtual;
     [SerializeField] RectTransform barravida;
+    [SerializeField] bool Respawn;
 
     NetworkStartPosition[] pontosSpawn;
 
@@ -20,6 +21,7 @@ public class Vida : NetworkBehaviour
         }
     }
 
+
     public void Damage(int quantidade)
     {
         if (!isServer) return;
@@ -29,8 +31,15 @@ public class Vida : NetworkBehaviour
 
         if(vidaAtual <= 0)
         {
-            vidaAtual = vidaMaxima;
-            RpcRespawn();
+            if (Respawn)
+            {
+                vidaAtual = vidaMaxima;
+                RpcRespawn();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
     private void AtualizaBarraVida(int vida)

@@ -11,6 +11,10 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] float velocidade;
     float x, y;
 
+     void Awake()
+     {
+        transform.tag = "Player";
+     }
     void Update()
     {
         if (!isLocalPlayer) return;

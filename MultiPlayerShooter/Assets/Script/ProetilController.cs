@@ -8,7 +8,7 @@ public class ProetilController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Inimigo"))
         {
            Vida v = collision.gameObject.GetComponent<Vida>();
            v.Damage(damage);
